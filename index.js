@@ -12,8 +12,8 @@ dict = {
 
 for (var button of buttons) {
     button.addEventListener("click", function () {
-        var className = this.classList[0];
-        var address = "sounds/" + dict[className];
+        var innerLetter = this.innerHTML;
+        var address = "sounds/" + dict[innerLetter];
         var sound = new Audio(address);
         sound.play();
     });
