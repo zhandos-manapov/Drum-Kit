@@ -19,5 +19,12 @@ for (var button of buttons) {
     });
 }
 
+document.addEventListener("keydown", function (event){
+    var letter = event.key;
+    var address = "sounds/" + dict[letter];
+    var sound = new Audio(address);
+    sound.play();
+}
+)
 
 
