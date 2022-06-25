@@ -1,4 +1,4 @@
-var buttons = document.querySelectorAll("button");
+var buttons = $("button");
 
 dict = {
     "w": "tom-1.mp3",
@@ -10,22 +10,28 @@ dict = {
     "l": "snare.mp3"
 }
 
-for (var button of buttons) {
-    button.addEventListener("click", function () {
-        var innerLetter = this.innerHTML;
-        makeSound(innerLetter);
-    });
-}
-
-document.addEventListener("keydown", function (event) {
-    var letter = event.key;
-    makeSound(letter);
+buttons.on("click", function () {
+    var innerLetter = this.innerHTML;
+    makeSound(innerLetter);
+    buttonAnimation(innerLetter);
 })
 
-function makeSound(key){
+$(document).on("keydown", (event) => {
+    var letter = event.key;
+    makeSound(letter);
+    buttonAnimation(letter);
+})
+
+makeSound = (key) => {
     var address = "sounds/" + dict[key];
     var sound = new Audio(address);
     sound.play();
 }
 
-
+buttonAnimation = (key) => {
+    var activeButton = $('.' + key);
+    activeButton.addClass("pressed")
+    setTimeout(() => {
+        activeButton.removeClass("pressed");
+    }, 100);
+}
